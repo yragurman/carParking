@@ -1,7 +1,7 @@
 import cv2
 import pickle
 
-
+this is piece of crap ^_^
 def saveParkingSpaces(spaces, filename):
     with open(filename, 'wb') as file:
         pickle.dump(spaces, file)
