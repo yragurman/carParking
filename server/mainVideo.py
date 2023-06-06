@@ -2,6 +2,7 @@ import cv2
 import pickle
 import cvzone
 import numpy as np
+from flask import Flask, render_template, Response
 
 
 def load_parking_spaces(filename):
@@ -45,7 +46,7 @@ cap = cv2.VideoCapture('carPark.mp4')
 
 def genFrames():
     while True:
-        if cap.get(cv2.CAP_PROP_POS_FRAMES) == cap.get(cv2.CAP_PROP_FRAME_COUNT):
+        if cap.get(cv2.CAP_PROP_POS_FRAMES) >= cap.get(cv2.CAP_PROP_FRAME_COUNT):
             cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
 
         success, img = cap.read()
@@ -58,18 +59,26 @@ def genFrames():
             imgDilate = cv2.dilate(imgMedian, kernel, iterations=1)
             checkParkingSpace(imgDilate, img)
 
-            cv2.imshow("Image", img)
+            # cv2.imshow("Image", img)
             # cv2.imshow("imgDilate", imgDilate)
 
-            key = cv2.waitKey(10)
-            if key == 27:
-                cv2.destroyAllWindows()
-                break
+            ret, buffer = cv2.imencode('.jpg', img)
+            img = buffer.tobytes()
+            yield (b'--img\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + img + b'\r\n')
 
         else:
-            pass
+            break
+
+
+app = Flask(__name__)
+
+
+@app.route('/video_feed')
+def video_feed():
+    return Response(genFrames(),  mimetype='multipart/x-mixed-replace; boundary=img')
 
 
 if __name__ == "__main__":
-    genFrames()
+    app.run(debug=True, use_reloader=False)
 
