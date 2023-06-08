@@ -28,7 +28,7 @@ def checkParkingSpace(imageProcess, img):
         count = cv2.countNonZero(imgCrop)
         cvzone.putTextRect(img, str(count), (x1, y2), scale=1, thickness=2, offset=0)
 
-        if count < 1000:
+        if count < 900:
             color = (0, 255, 0)
             thickness = 5
             spaceCounter += 1
@@ -37,7 +37,8 @@ def checkParkingSpace(imageProcess, img):
             thickness = 2
         cv2.rectangle(img, (x1, y1), (x2, y2), color, thickness)
 
-    cvzone.putTextRect(img, f'Free: {spaceCounter} / {len(parking_spaces)}', (100, 50), scale=3, thickness=5, offset=20, colorR=(0, 200, 0))
+    cvzone.putTextRect(img, f'{spaceCounter} / {len(parking_spaces)}',
+                       (100, 50), scale=3, thickness=5, offset=20, colorR=(0, 200, 0))
 
 
 # Video feed

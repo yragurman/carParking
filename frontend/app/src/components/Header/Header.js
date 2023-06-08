@@ -1,24 +1,19 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 
-import { Wrapper, LogoWrapper, ImgLogo, Navigation } from "./Header.styled";
+import { Wrapper, LogoWrapper, Navigation } from "./Header.styled";
 
 function Header(){
     return(
         <Wrapper>
-            <LogoWrapper>
-                Logo
-            </LogoWrapper>
+            <LogoWrapper>CarParking</LogoWrapper>
             <Navigation>
                 <ul>
                     <li>
-                        <NavLink to="/">Home</NavLink>
+                        <NavLink to="/">Головна</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/ParkingCamera">Parking Live</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/ParkingList">Parking List</NavLink>
+                        <NavLink to="/ParkingCamera">Камера Live</NavLink>
                     </li>
                 </ul>
             </Navigation>

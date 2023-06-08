@@ -3,18 +3,18 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   border-bottom: black;
-  min-height: 10vh;
-  background-color: black;
+  min-height: 100px;
+  background-color: #151C28;
+  max-width: 100%;
 `;
 
 export const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
-`;
-
-export const ImgLogo = styled.img`
-  width: 40%;
-  height: 40%;
+  color: #FFF;
+  margin-left: 80px;
+  font-size: 48px;
+  margin-right: 485px;
 `;
 
 export const Navigation = styled.div`
@@ -26,7 +26,8 @@ export const Navigation = styled.div`
     font-size: 150%;
   }
   li {
-    margin-right: 10vh;
+    margin-right: 15vh;
+    font-size: 5vh;
     a {
       color: #fff;
       text-decoration: none;

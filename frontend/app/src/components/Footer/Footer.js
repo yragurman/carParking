@@ -1,10 +1,12 @@
 import React from "react";
 
+import { Wrapper, LogoWrapper } from "./Footer.styled";
+
 function Footer(){
     return(
-        <div>
-            <h1>Hello i`m footer</h1>
-        </div>
+        <Wrapper>
+            <LogoWrapper>CarParking</LogoWrapper>
+        </Wrapper>
     )
 }
 
